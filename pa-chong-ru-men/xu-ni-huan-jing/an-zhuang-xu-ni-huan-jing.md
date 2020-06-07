@@ -1,6 +1,6 @@
 # 安装虚拟环境
 
-{% page-ref page="an-zhuang-xu-ni-huan-jing.md" %}
 
 
+* [安装虚拟环境](虚拟环境.md#安装虚拟环境)
 
