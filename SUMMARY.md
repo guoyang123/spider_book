@@ -1,53 +1,36 @@
+# Table of contents
 
-# 概述
+* [Introduction](README.md)
 
-### 爬虫入门
+## 爬虫入门
 
-* [虚拟环境](虚拟环境.md)
-    * [安装虚拟环境](虚拟环境.md#安装虚拟环境)
-    * [第三方镜像](虚拟环境.md#第三方镜像)
-	* [新建虚拟环境](虚拟环境.md#python3新建虚拟环境)
-	* [创建虚拟环境](虚拟环境.md#创建虚拟环境)
-	* [开启虚拟环境](虚拟环境.md#开启虚拟环境)
-	* [退出虚拟环境](虚拟环境.md#退出虚拟环境)
-	* [virtualenvwrapper](虚拟环境.md#virtualenvwrapper)
-
-
-* [正则表达式](正则表达式.md)
-    * [特殊字符](正则表达式.md#特殊字符)
-    * [应用](正则表达式.md#应用)
-
-
-* [scrapy入门](scrapy入门.md)
-    * [scrapy安装和配置](scrapy入门.md#scrapy安装和配置)
-	* [scrapy构建项目](scrapy入门.md#scrapy构建项目)
-    * [需求分析](scrapy入门.md#需求分析)
-	* [pycharm中调试scrapy源码](scrapy入门.md#使用pycharm调式scrapy)
-    * [xpath基础语法](scrapy入门.md#xpath)
-	* [xpath提取元素](scrapy入门.md#xpath提取元素)
-    * [css选择器](scrapy入门.md#css选择器)
-
-
-* [scrapy爬取知名博客网站数据](scrapy爬取知名博客网站数据.md)
-	* [编写spider完成抓取](scrapy爬取知名博客网站数据.md#编写spider完成抓取)
-	* [提取详细页信息](scrapy爬取知名博客网站数据.md#提取详细页信息)
-	* [items的定义和使用](scrapy爬取知名博客网站数据.md#items的定义和使用)
-	* [scrapy配置图片下载](scrapy爬取知名博客网站数据.md#scrapy配置图片下载)
-	* [item数据写入到json文件](scrapy爬取知名博客网站数据.md#item数据写入到json文件)
-	* [pipeline数据库保存](scrapy爬取知名博客网站数据.md#pipeline数据库保存)
-	* [异步入库mysql](scrapy爬取知名博客网站数据.md#异步入库mysql)
-	* [数据库插入主键冲突解决方案](scrapy爬取知名博客网站数据.md#scrapy安装和配置)
-	* [itemloader提取信息](scrapy爬取知名博客网站数据.md#scrapy安装和配置)
-
-
-
-
-
-
-
-
-
-
-
-
+* [虚拟环境](pa-chong-ru-men/xu-ni-huan-jing/README.md)
+  * [安装虚拟环境](pa-chong-ru-men/xu-ni-huan-jing/an-zhuang-xu-ni-huan-jing.md)
+  * [第三方镜像](pa-chong-ru-men/xu-ni-huan-jing/di-san-fang-jing-xiang.md)
+  * [新建虚拟环境](pa-chong-ru-men/xu-ni-huan-jing/xin-jian-xu-ni-huan-jing.md)
+  * [创建虚拟环境](pa-chong-ru-men/xu-ni-huan-jing/chuang-jian-xu-ni-huan-jing.md)
+  * [开启虚拟环境](pa-chong-ru-men/xu-ni-huan-jing/kai-qi-xu-ni-huan-jing.md)
+  * [退出虚拟环境](pa-chong-ru-men/xu-ni-huan-jing/tui-chu-xu-ni-huan-jing.md)
+  * [virtualenvwrapper](pa-chong-ru-men/xu-ni-huan-jing/virtualenvwrapper.md)
+* [正则表达式](zheng-ze-biao-da-shi/README.md)
+  * [特殊字符](zheng-ze-biao-da-shi/te-shu-zi-fu.md)
+  * [应用](zheng-ze-biao-da-shi/ying-yong.md)
+* [scrapy入门](scrapy-ru-men/README.md)
+  * [scrapy安装和配置](scrapy-ru-men/scrapy-an-zhuang-he-pei-zhi.md)
+  * [scrapy构建项目](scrapy-ru-men/scrapy-gou-jian-xiang-mu.md)
+  * [需求分析](scrapy-ru-men/xu-qiu-fen-xi.md)
+  * [pycharm中调试scrapy源码](scrapy-ru-men/pycharm-zhong-tiao-shi-scrapy-yuan-ma.md)
+  * [xpath基础语法](scrapy-ru-men/xpath-ji-chu-yu-fa.md)
+  * [xpath提取元素](scrapy-ru-men/xpath-ti-qu-yuan-su.md)
+  * [css选择器](scrapy-ru-men/css-xuan-ze-qi.md)
+* [scrapy爬取知名博客网站数据](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/README.md)
+  * [编写spider完成抓取](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/bian-xie-spider-wan-cheng-zhua-qu.md)
+  * [提取详细页信息](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/ti-qu-xiang-xi-ye-xin-xi.md)
+  * [items的定义和使用](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/items-de-ding-yi-he-shi-yong.md)
+  * [scrapy配置图片下载](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/scrapy-pei-zhi-tu-pian-xia-zai.md)
+  * [item数据写入到json文件](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/item-shu-ju-xie-ru-dao-json-wen-jian.md)
+  * [pipeline数据库保存](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/pipeline-shu-ju-ku-bao-cun.md)
+  * [异步入库mysql](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/yi-bu-ru-ku-mysql.md)
+  * [数据库插入主键冲突解决方案](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/shu-ju-ku-cha-ru-zhu-jian-chong-tu-jie-jue-fang-an.md)
+  * [itemloader提取信息](scrapy-pa-qu-zhi-ming-bo-ke-wang-zhan-shu-ju/itemloader-ti-qu-xin-xi.md)
 

@@ -1,0 +1,339 @@
+# 正则表达式
+
+## 特殊字符
+
+* ^ $ \* ? + {2} {2,} {2,5} \|
+* \[\]  \[a-z\] .
+* \s \S \w \W
+* \[\u4E00-\u9FA5\] \(\) \d 
+
+## 解释
+
+> ^n，以n字符开头
+>
+> .代表任意字符
+>
+> \*前面的字符可以出现任意多次
+
+案例：
+
+```python
+       import re
+        str="neuedu123"
+        #判断str是否以n开头
+        regex_str="^n.*"
+        if re.match(regex_str,str):
+            print("yes")
+```
+
+```text
+解释： ^n.* 
+匹配以‘n’字符开头，后面是任意字符并且可以出现任意次。
+```
+
+> $ 以$前面字符结尾的
+
+```python
+       import re
+        str="neuedu123"
+        #判断str是否以n开头且以3结尾
+        regex_str="^n.*3$"
+        if re.match(regex_str,str):
+            print("yes")
+```
+
+> 贪婪匹配：指的是匹配最大长度的子串\(从后往前匹配\)
+
+```python
+import re
+str="nedfdsdfsdnnuedu123n"
+#
+regex_str=".*(n.*n).*"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+运行结果 nuedu123n
+```
+
+> ? 非贪婪匹配模式。（从前往后匹配）
+
+```python
+import re
+str="nedfdsdfsdnnuedu123n"
+#匹配nedfdsdfsdn
+regex_str=".*?(n.*?n).*"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+运行结果 nedfdsdfsdn
+```
+
+> * 前面的字符至少出现一次
+
+```python
+import re
+str="nedfdsdfsdnnuedu123nnnnnn"
+regex_str=".*(n.+n).*"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+结果： nnn
+```
+
+> {2}：前面的字符需要出现2次
+>
+> {2，}：前面的字符至少出现2次
+>
+> {2，5}前面的字符出现2-5次
+
+```python
+import re
+str="nedfdsdfsdnnuedu123nnnnnn"
+regex_str=".*(n.{2}n).*"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+结果： nnnn
+```
+
+```python
+import re
+str="nedfdsdfsdnnuedu123nnn"
+regex_str=".*(n.{3,}n).*"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+结果： nuedu123nnn
+```
+
+```text
+import re
+str="nedfdsdfsdnnuedu123nnnnnn"
+regex_str=".*(n.{3,5}n).*"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+结果： nnnn
+```
+
+> \| ：或
+
+```python
+import re
+str="neuedu123"
+regex_str="(neuedu|neuedu123)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+结果： neuedu
+```
+
+```python
+import re
+#str="neuedu123"
+str="neuneuedu123"
+#提取整个字符串
+regex_str="((neuedu|neuneuedu)123)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))        # 1代表最外层括号
+```
+
+```text
+ 结果：neuneuedu123        
+``
+
+> [abcd]:abcd中任意一个字符
+
+```python
+import re
+str="neuedu"
+regex_str="([mn]euedu)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：neuedu        
+``
+
+>[0-9]:区间，0到9任意一个数字
+
+```python
+import re
+str="18722345432"
+regex_str="(1[35678][0-9]{9})"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：18722345432
+```
+
+> 不为1，限定以某个字符开头
+
+```python
+import re
+str="18aaaaaaaaa"
+regex_str="(1[35678][^1]{9})"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：18aaaaaaaaa
+```
+
+> \s 代表空格
+
+```python
+import re
+str="你 好"
+regex_str="(你\s好)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：你 好
+```
+
+> \S 不为空格
+
+```python
+import re
+str="你s好"
+regex_str="(你\S好)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：你s好
+```
+
+> \w 等同于\[A-Za-z0-9\_\]，代表字母数字下划线
+
+```python
+import re
+str="你_好"
+regex_str="(你\w好)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：你_好
+```
+
+> \W 等同于 \[ ^ A-Za-z0-9\_\]，非字母数字下划线
+
+```python
+import re
+str="你@好"
+regex_str="(你\W好)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：你@好
+```
+
+> \[\u4E00-\u9FA5\] ：汉字
+
+```python
+import re
+str="study in 东软睿道"
+regex_str=".*?([\u4E00-\u9FA5]+)"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：东软睿道
+```
+
+> \d代表数字
+
+```python
+import re
+str="xxx生于2020年"
+regex_str=".*?(\d+)年"  # regex_str=".*(\d{4})年"
+obj=re.match(regex_str,str)
+if obj:
+    print(obj.group(1))
+```
+
+```text
+ 结果：2020
+```
+
+## 应用
+
+### 提取出生日期
+
+> birthday="xxx生于2020年1月1日"
+>
+> birthday="xxx生于2020年1/1"
+>
+> birthday="xxx生于2020-1-1"
+>
+> birthday="xxx生于2020-01-01"
+>
+> birthday="xxx生于2020年01"
+>
+> 要求：提取出生日期
+
+```python
+import re
+birthday="xxx生于2020年1月1日"
+birthday="xxx生于2020/1/1"
+birthday="xxx生于2020-1-1"
+birthday="xxx生于2020-01-01"
+birthday="xxx生于2020年01"
+regex_str=".*生于((\d{4})[年/-]\d{1,2}([月/-]\d{1,2}([日]|$)|$))"
+obj=re.match(regex_str,birthday)
+if obj:
+    print(obj.group(1)
+```
+
+```text
+结果：
+2020年1月1日
+2020/1/1
+2020-1-1
+2020-01-01
+2020年01
+```
+
