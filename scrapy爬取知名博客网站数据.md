@@ -586,16 +586,16 @@ class JsonExporterPipeline(object):
 - 创建库
 
 ```
-create database article_spider if not exists ;
+create database cnblogs_news  if not exists ;
 ```
 
 - 建表 jobbole_article
 
 ```sql
-create database article_spider if not exists ;
-use article_spider;
-drop table if exists jobbole_article;
-create table jobbole_article(
+create database cnblogs_news if not exists ;
+use cnblogs_news;
+drop table if exists news_article;
+create table news_article(
   url_object_id varchar(50) primary key ,
   title varchar(255) ,
   url varchar(500),
@@ -622,13 +622,13 @@ pip3 install  mysqlclient-1.4.6-cp38-cp38-win_amd64.whl
 class MysqlPipeline(object):
     def __init__(self):
         #MySQLdb同步库
-        self.conn=MySQLdb.connect("127.0.0.1","root","root","article_spider",charset="utf8",use_unicode=True)
+        self.conn=MySQLdb.connect("127.0.0.1","root","root","cnblogs_news",charset="utf8",use_unicode=True)
         self.cursor=self.conn.cursor()
 
     def process_item(self, item, spider):
 
         insert_sql="""
-        insert into jobbole_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
+        insert into news_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
         fav_nums,tags,content ,create_date )
          values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)   
         """
@@ -658,7 +658,7 @@ class MysqlPipeline(object):
 
 ```
 MYSQL_HOST="localhost"
-MYSQL_DBNAME="article_spider"
+MYSQL_DBNAME="cnblogs_news"
 MYSQL_USER="root"
 MYSQL_PASSWD="root"
 ```
@@ -754,7 +754,7 @@ class CnblogArticleItem(scrapy.Item):
 
     def get_insert_sql(self):
         insert_sql = """
-                        insert into jobbole_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
+                        insert into news_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
                         fav_nums,tags,content ,create_date )
                          values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)  on duplicate key update parise_nums=values(parise_nums)
                         """

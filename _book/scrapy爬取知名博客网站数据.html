@@ -1098,14 +1098,14 @@ ITEM_PIPELINES = {
 <ul>
 <li>&#x521B;&#x5EFA;&#x5E93;</li>
 </ul>
-<pre><code>create database article_spider if not exists ;
+<pre><code>create database cnblogs_news  if not exists ;
 </code></pre><ul>
 <li>&#x5EFA;&#x8868; jobbole_article</li>
 </ul>
-<pre><code class="lang-sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> article_spider <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span> ;
-<span class="hljs-keyword">use</span> article_spider;
-<span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">exists</span> jobbole_article;
-<span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> jobbole_article(
+<pre><code class="lang-sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> cnblogs_news <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span> ;
+<span class="hljs-keyword">use</span> cnblogs_news;
+<span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">exists</span> news_article;
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> news_article(
   url_object_id <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) primary <span class="hljs-keyword">key</span> ,
   title <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) ,
   <span class="hljs-keyword">url</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">500</span>),
@@ -1129,13 +1129,13 @@ ITEM_PIPELINES = {
 <pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MysqlPipeline</span><span class="hljs-params">(object)</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
         <span class="hljs-comment">#MySQLdb&#x540C;&#x6B65;&#x5E93;</span>
-        self.conn=MySQLdb.connect(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;article_spider&quot;</span>,charset=<span class="hljs-string">&quot;utf8&quot;</span>,use_unicode=<span class="hljs-keyword">True</span>)
+        self.conn=MySQLdb.connect(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;cnblogs_news&quot;</span>,charset=<span class="hljs-string">&quot;utf8&quot;</span>,use_unicode=<span class="hljs-keyword">True</span>)
         self.cursor=self.conn.cursor()
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_item</span><span class="hljs-params">(self, item, spider)</span>:</span>
 
         insert_sql=<span class="hljs-string">&quot;&quot;&quot;
-        insert into jobbole_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
+        insert into news_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
         fav_nums,tags,content ,create_date )
          values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)   
         &quot;&quot;&quot;</span>
@@ -1164,7 +1164,7 @@ ITEM_PIPELINES = {
 <p>settings.py</p>
 </blockquote>
 <pre><code>MYSQL_HOST=&quot;localhost&quot;
-MYSQL_DBNAME=&quot;article_spider&quot;
+MYSQL_DBNAME=&quot;cnblogs_news&quot;
 MYSQL_USER=&quot;root&quot;
 MYSQL_PASSWD=&quot;root&quot;
 </code></pre><ul>
@@ -1253,7 +1253,7 @@ MYSQL_PASSWD=&quot;root&quot;
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_insert_sql</span><span class="hljs-params">(self)</span>:</span>
         insert_sql = <span class="hljs-string">&quot;&quot;&quot;
-                        insert into jobbole_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
+                        insert into news_article(title ,url , url_object_id ,front_image_path ,front_image_url,parise_nums,comment_nums , 
                         fav_nums,tags,content ,create_date )
                          values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)  on duplicate key update parise_nums=values(parise_nums)
                         &quot;&quot;&quot;</span>
@@ -1315,7 +1315,7 @@ MYSQL_PASSWD=&quot;root&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"scrapy爬取知名博客网站数据","level":"4.1","depth":1,"next":{"title":"编写spider完成抓取","level":"4.1.1","depth":2,"anchor":"#编写spider完成抓取","path":"scrapy爬取知名博客网站数据.md","ref":"scrapy爬取知名博客网站数据.md#编写spider完成抓取","articles":[]},"previous":{"title":"css选择器","level":"3.1.7","depth":2,"anchor":"#css选择器","path":"scrapy入门.md","ref":"scrapy入门.md#css选择器","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scrapy爬取知名博客网站数据.md","mtime":"2020-06-07T07:06:37.141Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-07T14:49:44.922Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"scrapy爬取知名博客网站数据","level":"4.1","depth":1,"next":{"title":"编写spider完成抓取","level":"4.1.1","depth":2,"anchor":"#编写spider完成抓取","path":"scrapy爬取知名博客网站数据.md","ref":"scrapy爬取知名博客网站数据.md#编写spider完成抓取","articles":[]},"previous":{"title":"css选择器","level":"3.1.7","depth":2,"anchor":"#css选择器","path":"scrapy入门.md","ref":"scrapy入门.md#css选择器","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"scrapy爬取知名博客网站数据.md","mtime":"2020-06-07T22:58:23.666Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-07T22:58:54.599Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
