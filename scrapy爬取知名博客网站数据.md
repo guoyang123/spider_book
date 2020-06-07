@@ -589,7 +589,7 @@ class JsonExporterPipeline(object):
 create database cnblogs_news  if not exists ;
 ```
 
-- 建表 jobbole_article
+- 建表 news_article
 
 ```sql
 create database cnblogs_news if not exists ;
